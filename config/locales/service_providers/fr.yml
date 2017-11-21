@@ -1,0 +1,11 @@
+---
+fr:
+  service_providers:
+    trusted_traveler:
+      alert:
+        header: Not translated yet
+        body: Not translated yet
+    usa_jobs:
+      alert:
+        header: Êtes-vous venu de USAJOBS?
+        body: Vous devrez créer un nouveau compte login.gov en utilisant la même adresse e-mail que vous avez utilisée pour USAJobs (soit votre adresse e-mail principale ou secondaire).

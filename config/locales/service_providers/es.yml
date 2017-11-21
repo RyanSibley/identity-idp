@@ -1,0 +1,11 @@
+---
+es:
+  service_providers:
+    trusted_traveler:
+      alert:
+        header: Not translated yet
+        body: Not translated yet
+    usa_jobs:
+      alert:
+        header: ¿Has venido de USAJOBS?
+        body: Tendrá que crear una nueva cuenta de login.gov usando la misma dirección de correo electrónico que usó para USAJobs (su dirección de correo electrónico primaria o secundaria).
