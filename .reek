@@ -51,8 +51,10 @@ NilCheck:
 LongParameterList:
   exclude:
     - IdentityLinker#optional_attributes
-    - VendorValidatorJob#perform
     - Idv::VendorResult#initialize
+    - Idv::ProfileJob#perform
+    - Idv::FinanceJob#perform
+    - Idv::PhoneJob#perform
 RepeatedConditional:
   exclude:
     - Users::ResetPasswordsController
