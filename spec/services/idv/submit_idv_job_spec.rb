@@ -35,6 +35,7 @@ RSpec.describe Idv::SubmitIdvJob do
           result_id: result_id,
           vendor: 'mock',
           vendor_params: vendor_params,
+          vendor_session_id: vendor_session_id,
           applicant_json: applicant.to_json
         )
 

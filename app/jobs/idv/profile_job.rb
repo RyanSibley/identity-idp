@@ -1,7 +1,6 @@
 module Idv
   class ProfileJob < ProoferJob
     def perform_identity_proofing
-      agent = Idv::Agent.new(applicant: applicant, vendor: vendor)
       resolution = agent.start(vendor_params)
       result = extract_result(resolution)
       store_result(result)

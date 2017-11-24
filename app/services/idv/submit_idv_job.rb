@@ -7,42 +7,32 @@ module Idv
 
     def submit_profile_job
       update_idv_session
-
-      ProfileJob.perform_later(
-        result_id: result_id,
-        vendor: vendor.to_s,
-        vendor_params: vendor_params,
-        applicant_json: idv_session.applicant.to_json
-      )
+      ProfileJob.perform_later(proofer_job_params)
     end
 
     def submit_finance_job
       update_idv_session
-
-      FinanceJob.perform_later(
-        result_id: result_id,
-        vendor: vendor.to_s,
-        vendor_params: vendor_params,
-        vendor_session_id: idv_session.vendor_session_id,
-        applicant_json: idv_session.applicant.to_json
-      )
+      FinanceJob.perform_later(proofer_job_params)
     end
 
     def submit_phone_job
       update_idv_session
-
-      PhoneJob.perform_later(
-        result_id: result_id,
-        vendor: vendor.to_s,
-        vendor_params: vendor_params,
-        vendor_session_id: idv_session.vendor_session_id,
-        applicant_json: idv_session.applicant.to_json
-      )
+      PhoneJob.perform_later(proofer_job_params)
     end
 
     private
 
     attr_reader :idv_session, :vendor_params
+
+    def proofer_job_params
+      {
+        result_id: result_id,
+        vendor: vendor.to_s,
+        vendor_params: vendor_params,
+        vendor_session_id: idv_session.vendor_session_id,
+        applicant_json: idv_session.applicant.to_json,
+      }
+    end
 
     def result_id
       @_result_id ||= SecureRandom.uuid
