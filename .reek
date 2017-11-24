@@ -52,8 +52,6 @@ LongParameterList:
   exclude:
     - IdentityLinker#optional_attributes
     - Idv::VendorResult#initialize
-    - Idv::IdvJob#perform
-    - Idv::PhoneJob#perform
 RepeatedConditional:
   exclude:
     - Users::ResetPasswordsController
