@@ -52,8 +52,7 @@ LongParameterList:
   exclude:
     - IdentityLinker#optional_attributes
     - Idv::VendorResult#initialize
-    - Idv::ProfileJob#perform
-    - Idv::FinanceJob#perform
+    - Idv::IdvJob#perform
     - Idv::PhoneJob#perform
 RepeatedConditional:
   exclude:

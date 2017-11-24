@@ -1,15 +1,10 @@
 module Idv
-  class ProfileJob < IdvJob
-    def perform(result_id:, vendor:, vendor_params:, applicant_json:)
-      agent = Idv::Agent.new(
-        applicant: applicant_from_json(applicant_json),
-        vendor: vendor.to_sym
-      )
+  class ProfileJob < ProoferJob
+    def perform_identity_proofing
+      agent = Idv::Agent.new(applicant: applicant, vendor: vendor)
       resolution = agent.start(vendor_params)
-      store_result(resolution: resolution, result_id: result_id)
-    rescue StandardError
-      store_failed_job_result(result_id)
-      raise
+      result = extract_result(resolution)
+      store_result(result)
     end
 
     private
@@ -24,11 +19,6 @@ module Idv
         normalized_applicant: vendor_resp.normalized_applicant,
         session_id: resolution.session_id
       )
-    end
-
-    def store_result(resolution:, result_id:)
-      result = extract_result(resolution)
-      VendorValidatorResultStorage.new.store(result_id: result_id, result: result)
     end
   end
 end
