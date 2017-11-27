@@ -10,14 +10,10 @@ module Idv
       @vendor_params = vendor_params
       @applicant = applicant_from_json(applicant_json)
       @vendor_session_id = vendor_session_id
-
       perform_identity_proofing
-    rescue StandardError
-      store_failed_job_result
-      raise
     end
 
-    def perform_identity_proofing
+    def verify_identity_with_vendor
       raise NotImplementedError, "subclass must implement #{__method__}"
     end
 
@@ -30,6 +26,13 @@ module Idv
     def applicant_from_json(applicant_json)
       applicant_attributes = JSON.parse(applicant_json, symbolize_names: true)
       Proofer::Applicant.new(applicant_attributes)
+    end
+
+    def perform_identity_proofing
+      verify_identity_with_vendor
+    rescue StandardError
+      store_failed_job_result
+      raise
     end
 
     def extract_result(confirmation)
